@@ -2,7 +2,7 @@ from scipy.stats import norm
 import numpy as np
 
 def calculate_deltas(s,k,vol,t):
-    d_1 = (np.log(s/k) + (.5 * vol**2)*t)/(vol * np.sqrt(t))
+    d_1 = (np.log(s/k) + (r + .5 * vol**2)*t)/(vol * np.sqrt(t))
     d_2 = d_1 - (vol * np.sqrt(t))
     return (d_1, d_2)
 
@@ -37,8 +37,8 @@ def greeks(s, k, r, vol, t, option_type = "call"):
 if __name__ == "__main__":
     # check
     s, k, r, vol, t = 100, 100, .05, .2, 1
-    print(f"put: {black_scholes_price(s,k,r,vol,t)}")
-    print(f"call: {black_scholes_price(s,k,r,vol,t, option_type='put')}")
+    print(f"call: {black_scholes_price(s,k,r,vol,t)}")
+    print(f"put: {black_scholes_price(s,k,r,vol,t, option_type='put')}")
     print(greeks(s, k, r, vol, t))
     print(greeks(s,k,r,vol,t,option_type = "put"))
 
